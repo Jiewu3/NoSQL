@@ -1,0 +1,27 @@
+noSQL Features Comparison
+Key - Value	
+Positives
+in memory storage, caching fast reads, a trade-off between persistence level and speed, auto-sharding, sub-millisecond response, ~700 TPS, TTL option
+Negatives
+can lose ~5 minutes of data in RPO scenarios, lacking Durability / "eventual" persistence (can lose ~1 minute of data due to latency in replication), 
+no encryption functionality, no complex querying.
+
+Document	
+Positives
+catalog system/configuration data, JSON data, horizontal scaling, schema-less, sharding, built-in encryption functionality with WiredTiger storage, 
+global deployment functionality, TTL indexing	
+Negatives
+no true Master-Master (achieved through sharding), transactional consistency concerns with multi-document updates (not a limitation in the newest version, 4.0)
+
+Column Family
+Positives
+can handle heavy writes, highly scalable, Master-Master/ peerless "ring" topology, sharding, global deployment functionality	
+Negatives
+eventual consistency, complex modeling, and partitioning; do not support ACID transactions
+
+Relational	
+Positives
+structured data, OLTP data, strong ACID compliance	
+Negatives
+not agile, rigid schema, doesn't handle high volume well compared to others, complex and less mature global deployment, lack of auto high availability, 
+no in-memory/caching functionality built in, TTL (time to live)
